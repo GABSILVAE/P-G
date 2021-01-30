@@ -1,13 +1,9 @@
 Actualizar en local con los ultimos cambios del repositorio
 Paso 1: git fetch
 Paso 2: git pull
-<<<<<<< HEAD
-asd
-=======
 Nota: please commit your changes or stash them before you merge?? 
 	RTA: 1) Subir los cambios locales.
 	     2) descartar los cambios locales # git reset --hard	
->>>>>>> b077b38dfe04f2ecbf1f557f5629af4b3af1e47c
 
 Enviar cambios al repositorio
 Paso 1: git add
