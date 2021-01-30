@@ -1,6 +1,7 @@
 Actualizar en local con los ultimos cambios del repositorio
 Paso 1: git fetch
 Paso 2: git pull
+asd
 
 Enviar cambios al repositorio
 Paso 1: git add
