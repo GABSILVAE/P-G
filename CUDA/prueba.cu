@@ -19,7 +19,7 @@ int main(int *argc, char** argv[]) {
 
 	int res=0;
 	res = pow (2,3);
-	printf ("el resultado es %d",res );
+	printf ("el resultado es %d", res );
 	 
 	return 0;
 }
