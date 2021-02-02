@@ -16,9 +16,10 @@ __host__ int pow (int arg , int exp){
 
 
 int main(int *argc, char** argv[]) {
+
 	int res=0;
-	rs = pow (2,3);
-	printf ("el resultado es %d",rs );
+	res = pow (2,3);
+	printf ("el resultado es %d",res );
 	 
 	return 0;
 }
