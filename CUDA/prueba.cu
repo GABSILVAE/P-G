@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cuda_runtime.h>
-__host__ int pow (int arg , int exp){
+__host__ char pow (int arg , int exp){
 	
 	int i;
 	int res=0;	
