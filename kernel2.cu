@@ -159,10 +159,17 @@ __host__ inline void delay(int s){
 	this_thread::sleep_for(chrono::seconds(s));
 }
 
-int main(int *argc, char** argv[]) {	
+int main(int *argc, char** argv[]){	
 	printf("hola");
+	gpio_export(79);
+	gpio_set_dir(79,1);
+	
 	while(1){
 		printf("hola2");
-	return 0;
+		gpio_set_value(79,1);
+		delay(1);	
+		gpio_set_value(79,0);
+		delay(1);
 	}
+	return 0;
 }

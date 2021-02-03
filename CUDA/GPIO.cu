@@ -157,13 +157,13 @@ __host__ inline void delay(int s){
 }
 
 int main(int *argc, char** argv[]) {
-	gpio_export(gpiod);
-	gpio_set_dir(gpiod,1);
+	gpio_export(79);
+	gpio_set_dir(79,1);
 		
 	while(1){
-		gpio_set_value(gpiod,1);
+		gpio_set_value(79,1);
 		delay(1);	
-		gpio_set_value(gpiod,0);
+		gpio_set_value(79,0);
 		delay(1);
 	}
 	return 0;
