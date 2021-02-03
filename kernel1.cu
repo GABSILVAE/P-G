@@ -12,6 +12,10 @@
 
 using namespace std;
 
+#define SYSFS_GPIO_DIR "/sys/class/gpio"
+#define POLL_TIMEOUT (3 * 1000) /* 3 seconds */
+#define MAX_BUF 64
+
 __host__ void writeFile(char *fileName, char line[]) {
 	FILE* file;
 	file = fopen(fileName, "w");
