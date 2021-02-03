@@ -17,6 +17,9 @@ using namespace std;
 #define POLL_TIMEOUT (3 * 1000) /* 3 seconds */
 #define MAX_BUF 64
 
+const unsigned char Key_deco[41]={0,0,0,0,0,0,0,216,0,0,0,50,79,14,0,194,232,0,15,16,0,17,13,18,19,0,20,0,0,149,0,200,168,38,0,76,51,12,77,0,78};
+unsigned int gpiod, pin;
+
 __host__ int gpio_export(unsigned int gpio){
 	int fd, len;
 	char buf[MAX_BUF];
@@ -156,15 +159,17 @@ __host__ inline void delay(int s){
 }
 
 int main(int *argc, char** argv[]) {
-	int a=0;
-	char vector[5]={0,1,2,3,4};
-	gpio_export(79);
-	gpio_set_dir(79,1);
+	pin = 12+1;
+	gpiod = atoi(Key_deco[pin]);
+	
+	
+	gpio_export(gpiod);
+	gpio_set_dir(gpiod,1);
 		
-	while(1){
-		gpio_set_value(79,1);
+	while(){
+		gpio_set_value(gpiod,1);
 		delay(1);	
-		gpio_set_value(79,0);
+		gpio_set_value(gpiod,0);
 	}
 	return 0;
 }
