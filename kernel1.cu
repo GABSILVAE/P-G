@@ -49,6 +49,8 @@ int main(int *argc, char** argv[]) {
 	char line[255] = "Helo world from Host";
 
 	writeFile("test.txt", line);
-
+	
+	gpio_export(50);
+	
 	return 0;
 }
