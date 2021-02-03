@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <poll.h>
 
-#include <dos.h>
 #include <cuda_runtime.h>
 using namespace std;
 
@@ -152,11 +151,13 @@ __host__ int gpio_fd_close(int fd){
 }
 
 int main(int *argc, char** argv[]) {
-	printf("ya casi :D");
-
-	delay(1000);
+	int a=0, b=0;
 	
-	printf("ya casi x2");
-	
+	while(){
+		printf("prende");
+		gpio_export(79);
+		gpio_set_dir(79,1);
+		gpio_set_value(79,1);
+	}
 	return 0;
 }
