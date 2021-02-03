@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <poll.h>
+#include <chrono> 
 
 #include <cuda_runtime.h>
 using namespace std;
@@ -150,19 +151,20 @@ __host__ int gpio_fd_close(int fd){
 	return close(fd);
 }
 
+__host__ inline void delay(int s){
+	this_thread::sleep_for(chrono::seconds(s));
+}
+
 int main(int *argc, char** argv[]) {
 	int a=0;
 	char vector[5]={0,1,2,3,4};
-	
+	gpio_export(79);
+	gpio_set_dir(79,1);
+		
 	while(1){
-		gpio_export(79);
-		gpio_set_dir(79,1);
-		if(vector[3]==2){
-			gpio_set_value(79,1);
-		}
-		else{
-			gpio_set_value(79,0);
-		}
+		gpio_set_value(79,1);
+		delay(1);	
+		gpio_set_value(79,0);
 	}
 	return 0;
 }
