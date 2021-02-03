@@ -151,13 +151,18 @@ __host__ int gpio_fd_close(int fd){
 }
 
 int main(int *argc, char** argv[]) {
-	int a=0, b=0;
+	int a=0;
+	char vector[5]={0,1,2,3,4};
 	
-	while(){
-		printf("prende");
+	while(1){
 		gpio_export(79);
 		gpio_set_dir(79,1);
-		gpio_set_value(79,1);
+		if(vector[3]==2){
+			gpio_set_value(79,1);
+		}
+		else{
+			gpio_set_value(79,0);
+		}
 	}
 	return 0;
 }
