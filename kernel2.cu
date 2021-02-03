@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,7 +17,7 @@ using namespace std;
 #define POLL_TIMEOUT (3 * 1000) /* 3 seconds */
 #define MAX_BUF 64
 
-unsigned char Key_deco[41]={0,0,0,0,0,0,0,216,0,0,0,50,79,14,0,194,232,0,15,16,0,17,13,18,19,0,20,0,0,149,0,200,168,38,0,76,51,12,77,0,78};
+unsigned int Key_deco[41]={0,0,0,0,0,0,0,216,0,0,0,50,79,14,0,194,232,0,15,16,0,17,13,18,19,0,20,0,0,149,0,200,168,38,0,76,51,12,77,0,78};
 unsigned int gpiod, pin;
 
 __host__ int gpio_export(unsigned int gpio){
@@ -160,15 +159,22 @@ __host__ inline void delay(int s){
 }
 
 int main(int *argc, char** argv[]){	
-	printf("hola");
-	gpio_export(79);
-	gpio_set_dir(79,1);
-	
+	cout << "		INICIO		" << "\n";
+	pin = 13;
+	gpiod = Key_deco[pin];
+
+	gpio_export(gpiod);
+	delay(5);
+	gpio_set_dir(gpiod,1);
+	delay(5);
+
 	while(1){
-		printf("hola2");
-		gpio_set_value(79,1);
-		delay(1);	
-		gpio_set_value(79,0);
+		cout << "VALOR = " << gpiod << "\n"; 
+		cout << "Prendido" << "\n";
+		gpio_set_value(gpiod,1);
+		delay(1);
+		cout << "Apagado" << "\n";
+		gpio_set_value(gpiod,0);
 		delay(1);
 	}
 	return 0;
