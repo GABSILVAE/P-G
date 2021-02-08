@@ -1,4 +1,4 @@
-#include "GPIO_our.h"
+#include "GPIO_our.cuh"
 using namespace std;
 
 __host__ int gpio_export(unsigned int gpio){

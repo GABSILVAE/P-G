@@ -1,4 +1,4 @@
-#include "GPIO_our.h"
+#include "GPIO_our.cuh"
 
 using namespace std;
 unsigned int gpiod, pin;
