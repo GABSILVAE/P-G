@@ -10,6 +10,7 @@
 #include <chrono> 
 #include <thread>
 
+#include <cuda_runtime.h>
 #define SYSFS_GPIO_DIR "/sys/class/gpio"
 #define MAX_BUF 64
 
