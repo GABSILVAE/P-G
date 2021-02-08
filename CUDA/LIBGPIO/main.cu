@@ -1,5 +1,6 @@
 #include "GPIO_our.h"
 
+using namespace std;
 unsigned int gpiod, pin;
 
 int main(int *argc, char** argv[]){	

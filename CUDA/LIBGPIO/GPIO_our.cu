@@ -1,4 +1,5 @@
 #include "GPIO_our.h"
+using namespace std;
 
 __host__ int gpio_export(unsigned int gpio){
 	int fd, len;
