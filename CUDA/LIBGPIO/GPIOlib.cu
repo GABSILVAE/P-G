@@ -1,5 +1,5 @@
-#ifndef GPIO_our_h
-#define GPIO_our_h
+#ifndef GPIOlib_h
+#define GPIOlib_h
 
 #include <iostream>
 #include <stdio.h>
@@ -12,6 +12,7 @@
 #include <chrono> 
 #include <thread>
 #include <cuda_runtime.h>
+
 #define SYSFS_GPIO_DIR "/sys/class/gpio"
 #define MAX_BUF 64
 
@@ -25,11 +26,11 @@ __host__ int gpio_fd_open(unsigned int gpio);
 __host__ int gpio_fd_close(int fd);
 __host__ void delay(int s);}
 
-#endif GPIO_our_h
+#endif GPIOlib_h
 
 
-#ifndef GPIO_our_cu
-#define GPIO_our_cu
+#ifndef GPIOlib_cu
+#define GPIOlib_cu
 
 using namespace std;
 
@@ -171,4 +172,4 @@ __host__ inline void delay(int s){
 	this_thread::sleep_for(chrono::seconds(s));
 }
 
-#endif GPIO_our_cu
+#endif GPIOlib_cu
