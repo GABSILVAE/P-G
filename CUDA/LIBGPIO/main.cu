@@ -1,4 +1,4 @@
-#include "GPIOlib_cu"
+#include "GPIOlib.cu"
 
 using namespace std;
 unsigned int gpiod, pin;
