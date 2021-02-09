@@ -13,6 +13,7 @@
 #include <thread>
 #include <cuda_runtime.h>
 
+using namespace std;
 #define SYSFS_GPIO_DIR "/sys/class/gpio"
 #define MAX_BUF 64
 
