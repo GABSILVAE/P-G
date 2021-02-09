@@ -25,7 +25,7 @@ __host__ int gpio_get_value(unsigned int gpio, unsigned int *value);
 __host__ int gpio_set_edge(unsigned int gpio, char *edge);
 __host__ int gpio_fd_open(unsigned int gpio);
 __host__ int gpio_fd_close(int fd);
-__host__ void delay(int s);}
+__host__ void delay(int s);
 
 #endif GPIOlib_h
 
