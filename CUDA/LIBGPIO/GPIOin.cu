@@ -16,20 +16,21 @@ int main(int *argc,char**argv[]){
 	gpio_export(out);
 	delay(1);
 	
-	gpio_dir(in,0);
+	gpio_set_dir(in,0);
 	delay(1);
-	gpio_dir(out,1);
+	gpio_set_dir(out,1);
 	delay(1);
+	
 	while(1){
-		
 		gpio_get_value(in,valor);
 		
-		gpio_set_value(out,value);
 		if(valor==1){
-			cout << "switch encendido"<<"\n"
+			cout << "switch encendido"<<"\n";
+			gpio_set_value(out,value);
 		}
 		else{
 			cout << "switch apagado"<<"\n";
+			gpio_set_value(out,value);
 		}
 	}
 	return 0;
