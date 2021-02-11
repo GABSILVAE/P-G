@@ -237,7 +237,7 @@ int main(int argc, char **argv, char **envp)
 		exit(-1);
 	}
 
-	gpio = atoi(argv[1]);
+	gpio = 14;
 
 	gpio_export(gpio);
 	gpio_set_dir(gpio, 0);
