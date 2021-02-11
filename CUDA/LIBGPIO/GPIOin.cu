@@ -26,11 +26,11 @@ int main(int *argc,char**argv[]){
 		
 		if(valor==1){
 			cout << "switch encendido"<<"\n";
-			gpio_set_value(out,value);
+			gpio_set_value(out,valor);
 		}
 		else{
 			cout << "switch apagado"<<"\n";
-			gpio_set_value(out,value);
+			gpio_set_value(out,valor);
 		}
 	}
 	return 0;
