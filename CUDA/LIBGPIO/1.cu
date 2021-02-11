@@ -249,14 +249,6 @@ int main(int argc, char **argv, char **envp)
 
 		rc = poll(fdset, nfds, timeout);      
 
-		if (rc < 0) {
-			printf("\npoll() failed!\n");
-			return -1;
-		}
-      
-		if (rc == 0) {
-			printf(".");
-		}
             
 		if (fdset[1].revents & POLLPRI) {
 			lseek(fdset[1].fd, 0, SEEK_SET);
