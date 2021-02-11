@@ -35,7 +35,7 @@ int main(int *argc,char**argv[]){
 			gpio_set_value(out,val);
 		}
 
-		delay(1);
+		//delay(1);
 	}
 	return 0;
 }
