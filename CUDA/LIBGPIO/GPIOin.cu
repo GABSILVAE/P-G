@@ -22,7 +22,7 @@ int main(int *argc,char**argv[]){
 	delay(1);
 	
 	while(1){
-		gpio_get_value(in,valor);
+		valor = gpio_get_value(in,*valor);
 		
 		if(valor==1){
 			cout << "switch encendido"<<"\n";
