@@ -229,14 +229,6 @@ int main(int argc, char **argv, char **envp)
 	unsigned int gpio;
 	int len;
 
-
-
-	if (argc < 2) {
-		printf("Usage: gpio-int <gpio-pin>\n\n");
-		printf("Waits for a change in the GPIO pin voltage level or input on stdin\n");
-		exit(-1);
-	}
-
 	gpio = 14;
 
 	gpio_export(gpio);
