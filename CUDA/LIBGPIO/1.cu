@@ -222,7 +222,7 @@ int gpio_fd_close(int fd)
  ****************************************************************/
 int main(int argc, char **argv, char **envp)
 {
-	struct pollfd fdset[2];
+	struct fdset[2];
 	int nfds = 2;
 	int gpio_fd, timeout, rc;
 	char *buf[MAX_BUF];
@@ -235,7 +235,9 @@ int main(int argc, char **argv, char **envp)
 	gpio_set_dir(gpio, 0);
 	gpio_set_edge(gpio, "rising");
 	gpio_fd = gpio_fd_open(gpio);
-
+	
+	printf("gpio_fd = %d\n", gpio_fd);
+	
 	timeout = POLL_TIMEOUT;
  
 	while (1) {
