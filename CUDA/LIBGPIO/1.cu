@@ -229,7 +229,7 @@ int main(int argc, char **argv, char **envp)
 	unsigned int gpio;
 	int len;
 
-	gpio = 14;
+	gpio = 79;
 
 	gpio_export(gpio);
 	gpio_set_dir(gpio, 0);
