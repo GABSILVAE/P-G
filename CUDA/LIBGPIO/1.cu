@@ -250,11 +250,10 @@ int main(int argc, char **argv, char **envp)
 
 		poll(fdset, nfds, timeout);      
 		
-		lseek(fdset[1].fd, 0, SEEK_SET);
+		//lseek(fdset[1].fd, 0, SEEK_SET);
 		len = read(fdset[1].fd, buf, MAX_BUF);
             
-		if (fdset[1].revents & POLLPRI) {
-			
+		if (fdset[1].revents & POLLPRI) {			
 			printf("\npoll() GPIO %d interrupt occurred\n", gpio);
 		}
 
