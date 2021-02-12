@@ -247,7 +247,7 @@ int main(int argc, char **argv, char **envp)
 		fdset[1].fd = gpio_fd;
 		fdset[1].events = POLLPRI;
 
-		rc = poll(fdset, nfds, timeout);      
+		poll(fdset, nfds, timeout);      
 
             
 		if (fdset[1].revents & POLLPRI) {
