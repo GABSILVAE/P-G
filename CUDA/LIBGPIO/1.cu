@@ -249,7 +249,9 @@ int main(int argc, char **argv, char **envp)
 		fdset[1].events = POLLPRI;
 
 		poll(fdset, nfds, timeout);      
-
+		
+		lseek(fdset[1].fd, 0, SEEK_SET);
+		len = read(fdset[1].fd, buf, MAX_BUF);
             
 		if (fdset[1].revents & POLLPRI) {
 			
