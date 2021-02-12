@@ -233,7 +233,7 @@ int main(int argc, char **argv, char **envp)
 
 	gpio_export(gpio);
 	gpio_set_dir(gpio, 0);
-	gpio_set_edge(gpio, "rising");
+	gpio_set_edge(gpio, "falling");
 	gpio_fd = gpio_fd_open(gpio);
 	printf("gpio_fd = %d\n", gpio_fd);
 	
