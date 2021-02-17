@@ -12,7 +12,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <poll.h>
+//#include <poll.h>
 //#include <chrono> 
 #include <thread>					--lib Delay 
 #include <cuda_runtime.h>			--lib Delay
