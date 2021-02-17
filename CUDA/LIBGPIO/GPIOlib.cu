@@ -5,15 +5,11 @@
 #ifndef GPIOlib_h
 #define GPIOlib_h
 
-#include <iostream>
+//#include <iostream>
 #include <stdio.h>
-//#include <stdlib.h>
-//#include <string.h>
 #include <errno.h>					//Informes de error
 #include <unistd.h>
 #include <fcntl.h>
-//#include <poll.h>
-//#include <chrono> 
 #include <thread>					//lib Delay 
 #include <cuda_runtime.h>			//lib Delay
 
