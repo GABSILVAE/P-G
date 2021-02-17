@@ -6,7 +6,7 @@
 #define GPIOlib_h
 
 #include <errno.h>					//Informes de error
-//#include <unistd.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <thread>					//lib Delay 
 #include <cuda_runtime.h>			//lib Delay
