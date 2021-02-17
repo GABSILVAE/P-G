@@ -1,4 +1,5 @@
 #include "GPIOlib.cu"
+#include <iostream>
 
 using namespace std;
 unsigned int in,out,pin_in,pin_out,*apt, val;
