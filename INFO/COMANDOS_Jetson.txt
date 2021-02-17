@@ -31,3 +31,6 @@ $ realsense-viewer
 Iniciar visualizador de GPU
 
 $ ./gpuGraph.py
+
+
+https://github.com/valentis/jetson-nano-gpio-example
