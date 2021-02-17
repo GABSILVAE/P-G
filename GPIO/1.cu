@@ -1,7 +1,6 @@
 #include <linux/module.h>   
 #include <linux/kernel.h>
 #include <linux/gpio.h>
-#include <linux/interrupt.h>
 
 #define LED 27
 #define BUTTON 23
