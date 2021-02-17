@@ -14,8 +14,8 @@
 #include <fcntl.h>
 #include <poll.h>
 #include <chrono> 
-#include <thread>
-#include <cuda_runtime.h>
+//#include <thread>
+//#include <cuda_runtime.h>
 
 using namespace std;
 #define SYSFS_GPIO_DIR "/sys/class/gpio"
