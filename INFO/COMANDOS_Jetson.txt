@@ -21,3 +21,13 @@ Paso 3: Para que todo los cambios surtan efecto en el repositorio hacemos:
 	git push
 
 http://www.ramip.net/git/clonar-repositorio-git.html
+
+-------------------------------------------------------------------------------------------------------------
+Iniciar la aplicacion para la realsense		https://www.jetsonhacks.com/2019/12/22/install-realsense-camera-in-5-minutes-jetson-nano/
+
+$ realsense-viewer
+
+-------------------------------------------------------------------------------------------------------------
+Iniciar visualizador de GPU
+
+$ ./gpuGraph.py
