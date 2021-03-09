@@ -1,3 +1,5 @@
+#https://omes-va.com/contornos/
+
 import cv2
 import numpy as np
 
