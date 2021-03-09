@@ -22,6 +22,8 @@ Paso 3: Para que todo los cambios surtan efecto en el repositorio hacemos:
 
 http://www.ramip.net/git/clonar-repositorio-git.html
 
+git config --global user.email "correo electronico"
+git config --global user.name "user name"
 -------------------------------------------------------------------------------------------------------------
 Iniciar la aplicacion para la realsense		https://www.jetsonhacks.com/2019/12/22/install-realsense-camera-in-5-minutes-jetson-nano/
 
