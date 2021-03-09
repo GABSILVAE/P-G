@@ -3,6 +3,10 @@
 // Curso Basico
 // Agosto 2020
 ///////////////////////////////////////////////////////////////////////////
+//
+///usr/local/cuda/bin/nvcc Basico2.cu -o test
+//./test
+//
 // includes
 #include <stdio.h>
 #include <stdlib.h>
