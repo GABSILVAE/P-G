@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-import timeit
+
 
 npTmp = np.random.random((1024, 1024)).astype(np.float32)
 
@@ -12,6 +12,7 @@ cuMat2 = cv.cuda_GpuMat()
 cuMat1.upload(npMat1)
 cuMat2.upload(npMat2)
 
-timeit cv.cuda.gemm(cuMat1, cuMat2,1,None,0,None,1)
+import timeit
+timeit.cv.cuda.gemm(cuMat1, cuMat2,1,None,0,None,1)
 
 #timeit cv.gemm(npMat1,npMat2,1,None,0,None,1)
