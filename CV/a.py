@@ -13,6 +13,6 @@ cuMat1.upload(npMat1)
 cuMat2.upload(npMat2)
 
 import timeit
-timeit cuda.gemm(cuMat1, cuMat2,1,None,0,None,1)
+timeit cv::cuda::gemm(cuMat1, cuMat2,1,None,0,None,1)
 
 #timeit cv.gemm(npMat1,npMat2,1,None,0,None,1)
