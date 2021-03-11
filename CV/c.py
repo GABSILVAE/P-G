@@ -1,5 +1,5 @@
 import numpy as np
-import cv2 as cv
+import cv2
 
 img = cv2.imread("figContorno.png", cv2.IMREAD_GRAYSCALE)
 src = cv2.cuda_GpuMat()
