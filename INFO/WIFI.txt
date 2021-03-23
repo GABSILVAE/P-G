@@ -1,0 +1,25 @@
+https://askubuntu.com/questions/832087/how-to-install-tp-link-wn822n-on-ubuntu/832092#832092
+
+I suggest that, with a temporary working internet connection by ethernet, 
+tethered or whatever means possible, open a terminal and do:
+
+sudo apt update
+sudo apt install git
+git clone https://github.com/jeremyb31/rtl8192eu-linux-driver
+cd rtl8192eu-linux-driver
+make ARCH=aarch64
+make
+sudo make install
+sudo modprobe 8192eu
+
+You wireless should now be working.
+
+When Update Manager installs a later kernel version, also known as 
+linux-image, after the required reboot, then recompile:
+
+cd rtl8192eu-linux-driver
+make clean
+make ARCH=aarch64
+make
+sudo make install
+sudo modprobe 8192eu
