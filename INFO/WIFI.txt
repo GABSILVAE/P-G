@@ -7,7 +7,7 @@ sudo apt update
 sudo apt install git
 git clone https://github.com/jeremyb31/rtl8192eu-linux-driver
 cd rtl8192eu-linux-driver
-make ARCH=aarch64
+export ARCH=arm64
 make
 sudo make install
 sudo modprobe 8192eu
@@ -19,7 +19,7 @@ linux-image, after the required reboot, then recompile:
 
 cd rtl8192eu-linux-driver
 make clean
-make ARCH=aarch64
+export ARCH=arm64
 make
 sudo make install
 sudo modprobe 8192eu
