@@ -6,3 +6,5 @@ cmake .
 make
 # Convierte la imagen a escala de grises
 ./to_bw image.jpg
+
+https://github.com/JetsonHacksNano/buildOpenCV
