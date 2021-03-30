@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-%matplotlib inline
+
 
 img_raw = cv2.imread('file.png')
 
