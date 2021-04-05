@@ -1,0 +1,48 @@
+https://openkinect.org/wiki/Getting_Started#Ubuntu_Manual_Install
+
+sudo apt-get install git-core cmake libglut3-dev pkg-config build-essential libxmu-dev libxi-dev libusb-1.0-0-dev
+git clone git://github.com/OpenKinect/libfreenect.git
+cd libfreenect
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+sudo ldconfig /usr/local/lib64/
+sudo freenect-glview
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+echo "Updating and upgrading"
+sudo apt-get -y update
+sudo apt-get -y upgrade
+
+echo "Installing build tools"
+sudo apt-get -y install build-essential cmake pkg-config
+sudo apt-get -y install libgtk2.0-dev
+sudo apt-get -y install libusb-1.0-0-dev
+
+echo "Installing git"
+sudo apt-get -y install git git-core
+
+echo "Installing python and dependences"
+sudo apt-get -y install python python-scipy python-matplotlib cython python-dev python-numpy 
+sudo apt-get -y install python-opencv
+
+echo "Installing dependences libFreenect"
+sudo apt-get -y install libglut3-dev 
+sudo apt-get -y install freeglut3-dev 
+sudo apt-get -y install libxmu-dev 
+sudo apt-get -y install libxi-dev 
+
+echo "Installing libFreenect"
+sudo apt-get -y install freenect
+
+echo "Installing python wrapper"
+sudo python setup.py install
+
+echo "Test libfreenect"
+freenect-cppview
+
+echo "Test wrapper-python"
+fakenect hands python demo_cv_sync.py

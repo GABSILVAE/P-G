@@ -1,3 +1,21 @@
+https://askubuntu.com/questions/1156519/cant-install-rtl8192eu-linux-driver-on-ubuntu-18-10
+
+sudo apt update
+sudo apt install git
+git clone https://github.com/jeremyb31/rtl8192eu-linux-driver
+cd rtl8192eu-linux-driver
+export ARCH=arm64
+make
+sudo make install
+
+echo "blacklist rtl8xxxu" | sudo tee /etc/modprobe.d/rtl8xxxu.conf;
+echo -e "8192eu\n\nloop" | sudo tee /etc/modules;
+sudo update-grub; sudo update-initramfs -u;
+systemctl reboot -i;
+sudo lshw -c network;
+You should see the linedriver=8192eu
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 https://askubuntu.com/questions/832087/how-to-install-tp-link-wn822n-on-ubuntu/832092#832092
 
 I suggest that, with a temporary working internet connection by ethernet, 
@@ -7,7 +25,7 @@ sudo apt update
 sudo apt install git
 git clone https://github.com/jeremyb31/rtl8192eu-linux-driver
 cd rtl8192eu-linux-driver
-make ARCH=aarch64
+export ARCH=arm64
 make
 sudo make install
 sudo modprobe 8192eu
@@ -19,7 +37,28 @@ linux-image, after the required reboot, then recompile:
 
 cd rtl8192eu-linux-driver
 make clean
-make ARCH=aarch64
+export ARCH=arm64
 make
 sudo make install
 sudo modprobe 8192eu
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+https://colaboratorio.net/enrique/hardware/2018/tp-link-wn822n-en-gnu-linux-solucion-definitiva/
+
+sudo apt install git linux-headers-generic build-essential dkms
+
+git clone https://github.com/Mange/rtl8192eu-linux-driver.git
+cd rtl8192eu-linux-driver
+sudo dkms add .
+sudo dkms install rtl8192eu/1.0
+cd /usr/src/rtl8192eu-1.0
+
+sudo make clean
+sudo make
+sudo make install
+sudo modprobe -a 8192eu
+
+lshw -c network
+blacklist rtl8xxxu
+
+
