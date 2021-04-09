@@ -24,5 +24,5 @@ func(a_gpu, block=(4,4,1))
 
 a_doubled = numpy.empty_like(a)
 cuda.memcpy_dtoh(a_doubled, a_gpu)
-print a_doubled
-print a
+print (a_doubled)
+print (a)
