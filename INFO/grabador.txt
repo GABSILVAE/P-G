@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=A-tML2aSmsc
+
+sudo apt-get install simplescreenrecorder -y
+sudo apt-get update
+sudo apt-get install simplescreenrecorder -y
