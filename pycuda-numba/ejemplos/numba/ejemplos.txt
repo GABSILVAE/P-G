@@ -1,0 +1,2 @@
+https://numba.pydata.org/numba-doc/dev/cuda/examples.html 
+https://github.com/numba/numba-examples/blob/master/examples/density_estimation/histogram/gpu.py
