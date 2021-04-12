@@ -3,7 +3,7 @@
 https://medium.com/dropout-analytics/pycuda-on-jetson-nano-7990decab299
 
 $ sudo apt-get install cmake
-$ sudo apt-get install python3-pip
+$ sudo apt-get install python-pip
 $ sudo pip3 install wget
 $ sudo pip3 install Cython
 
@@ -11,15 +11,8 @@ $ sudo apt-get install libboost-all-dev
 $ sudo apt-get install python-numpy
 $ sudo apt-get install build-essential python-dev python-setuptools libboost-python-dev libboost-thread-dev
 
-Step 1 — Install PyCUDA
-	Install PyCUDA with PIP;
 
-		pip install pycuda or pip3 install pycuda
-
-	If you don’t have pip, get pip.
-
-
-Step 2 — Set nvcc Path
+Step 1 — Set nvcc Path
 	Nvcc comes preinstalled, but your Nano isn’t exactly told about it.. Use sudo to open your bashrc file;
 
 		sudo gedit ~/.bashrc
@@ -36,6 +29,14 @@ Step 2 — Set nvcc Path
 You can now check your nvcc version with;
 		
 		nvcc --version
+		
+
+Step 2 — Install PyCUDA
+	Install PyCUDA with PIP;
+
+		pip install pycuda or pip3 install pycuda
+
+	If you don’t have pip, get pip.
 
 
 ///////////////////////////////////// Numba ///////////////////////////////////

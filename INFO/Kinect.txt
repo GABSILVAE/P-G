@@ -39,6 +39,8 @@ sudo apt-get -y install libxi-dev
 echo "Installing libFreenect"
 sudo apt-get -y install freenect
 
+git clone https://github.com/OpenKinect/libfreenect.git
+
 echo "Installing python wrapper"
 sudo python setup.py install
 
