@@ -9,8 +9,7 @@ def draw():
     depth = get_depth()[0]
     output = depth.astype(np.uint8)
     
-    #cv2.imshow('Depth', output)
-	dst = cv2.filter2D(output-1,kernel)
+	dst = cv2.filter2D(output,-1,kernel)
 	cv2.imshow('Depth', dst)
 
 
