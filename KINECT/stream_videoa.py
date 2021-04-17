@@ -8,9 +8,9 @@ kernel = np.ones((5,5),np.float32)/25
 def draw():
     depth = get_depth()[0]
     output = depth.astype(np.uint8)
-    
-	dst = cv2.filter2D(output,-1,kernel)
-	cv2.imshow('Depth', dst)
+
+    dst = cv2.filter2D(output,-1,kernel)
+    cv2.imshow('Depth', dst)
 
 
 def loop(function, delay=5):
