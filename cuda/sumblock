@@ -1,0 +1,103 @@
+#include<stdio.h>
+#include<stdio.h>
+#include<cuda_runtime.h>
+
+#define hilos 10 // numero de hilos por bloque 
+__global__void suma(int *vector_1, int *dato,int n){
+
+	// kernel multibloque 
+	// identificaador global de cada hilo en el bloque 
+	int index =threadIdx.x + blockDim.x * blockIdx.x;
+	
+	//truncamiento de los hilos solo trabajan los hilos nesesarios 
+	if(index<n)
+	{
+		// generación de los vectores 
+		vector_1[index]=(n-1)-index;
+		int sum=0;
+		for(k=0;k<n;k++){
+			sum=+vector_1[index+k]		
+		}
+		dato[0]=sum;	
+	}
+
+}
+
+///////////////////////////////////
+int main (int argc, char ** argv)
+{	
+	
+	// declaraiones 
+	
+	int *hst_vector1, int *hst_dato;
+	
+	int *dev_vector1, int *dev_dato;
+	int n=50;
+	
+	// reserva en el host
+	hst_vector1=(int*)malloc(n*sizeof(int));
+	hst_dato=(int*)malloc(1*sizeof(int));
+	
+	
+	// reserva en el device	
+	cudaMalloc((void**)&dev_vector1,n * sizeof(int));
+	cudaMalloc((void**)&dev_dato,1 * sizeof(int));
+	
+
+
+
+	
+	for(i=0; i<n; i++ )
+	{
+		hst_vector1[i]=0;
+		
+	}
+
+	// envio de datos al device 
+	//cudaMemcpy(dev_vector1,hst_vector1,n *sizeof(int), cudaMemcpyHostToDevice);
+	
+	//lanzamiento del kernel 
+	// calculo del numero de bloques
+
+	int bloques = n/hilos;
+	if (n%trheads)
+	{	
+	
+		bloques=bloques+1;
+	}
+
+	printf("vector de %d elementos\n", n);
+
+	printf("lanzamiento  con %d bloques de %d hilos(%d hilos)\n",bloques,hilos,n);
+
+	suma<<<bloques, hilos>>> (dev_vestor1,dev_dato,n);
+
+	// captura de los datos del device
+
+	cudaMemcpy(hst_vector1,dev_vector1,n*sizeof(int), cudaMemcpyDeviceToHost);
+	cudaMemcpy(hst_dato,dev_dato,n*sizeof(int), cudaMemcpyDeviceToHost);
+
+	printf("vector1:\n")
+
+	for(int i=0; i<n i++;)
+	{
+		
+		printf("%2d",hst_vector1[i]);
+	
+	}
+	
+	
+	printf("vector resultado:\n");
+
+	printf("%2d",hst_dato);
+	
+	
+
+	printf("\n");
+	// salida
+	printf("***************************************************\n");
+	printf("<pulsa [INTRO] para finalizar>");
+	getchar();
+	return 0;
+
+}
