@@ -1,0 +1,3 @@
+https://wiki.tiker.net/PyCuda/Examples/
+https://documen.tician.de/pycuda/
+https://www.programcreek.com/python/example/90807/pycuda.compiler.SourceModule
