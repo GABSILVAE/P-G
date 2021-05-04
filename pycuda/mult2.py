@@ -12,7 +12,7 @@ def time_measure(f):
     return (t - t0)
 
 def mult(X, Y):
-    R = np.matrix([[0,0,0],[0,0,0],[0,0,0]])
+    R = np.zeros_like(X)
     R_gpu = gpuarray.to_gpu(R)
 
     X_gpu = gpuarray.to_gpu(X)
@@ -27,8 +27,8 @@ def mult(X, Y):
     #print(res)     
     return(res)
 
-A = np.matrix([[1,1,1],[1,1,1],[1,1,1]])
-B = np.matrix([[2,2,2],[1,1,1],[2,2,2]])
+A = np.ones((100,100))
+B = np.ones((100,100))
 
 renglones = A.shape[0]
 print("Cantidad de renglones = ",renglones)
