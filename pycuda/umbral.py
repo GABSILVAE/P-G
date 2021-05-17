@@ -8,6 +8,10 @@ import pycuda.driver as cuda
 # -- initialize the device
 import pycuda.autoinit
 
+import os
+
+from PIL import Image
+
 
 kernel_code_template = """
 __global__ void MatrixMulKernel(float *rgbimage, float *grayimage, float *binimage)
@@ -109,11 +113,27 @@ bn= np.zeros((fila, columna)). astype(np.float32)
 cuda.memcpy_dtoh(gr, gray_gpu)
 
 cuda.memcpy_dtoh(bn, bin_gpu)
+bn= bn.astype(np.uint8)
 
 print(kernel_code)
+print(bn.shape)
 
-figure, axes = plt.subplots(3)
-axes[0].imshow(image)
-axes[1].imshow(gr,cmap='gray')
-axes[2].imshow(bn,cmap='gray')
+image = Image.fromarray(bn).save('pic1.png')
+'''umbral = image.convert("L")
+
+base_dir = os.getcwd()
+folder_images = 'images'
+path = os.path.join(base_dir, folder_images)
+if not (os.path.exists(path)):
+    os.mkdir(path)
+image_path = os.path.join(path,'umbral.jpeg')
+#umbral.save(image_path)
+'''
+
+
+#figure, axes = plt.subplots(1)
+plt.imshow(bn,cmap='gray')
+#axes[1].imshow(gr,cmap='gray')
+#axes[2].imshow(bn,cmap='gray')
+plt.savefig("binarizada.jpeg")
 plt.show()
