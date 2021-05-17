@@ -12,4 +12,5 @@ mod = SourceModule("""
     """)
 
 func = mod.get_function("say_hi")
-func(block=(25,25,1),grid=(4,4,1))
+func(block=(2,2,1),grid=(1,1,1))
+

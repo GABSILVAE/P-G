@@ -43,8 +43,8 @@ int main(int argc, char ** argv)
 	
 	int *dev_a, *dev_b, *dev_c;
 	
-	int filas=640;
-	int columnas=480;
+	int filas=12;
+	int columnas=12;
 
 	int n = filas*columnas; 
 	

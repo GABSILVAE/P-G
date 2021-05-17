@@ -16,8 +16,8 @@ mod = SourceModule("""
 
 cuda_dbl = mod.get_function("doublify")
 
-hx=4
-hy=4
+hx=640
+hy=360
 n= np.array(hx)
 
 
@@ -31,7 +31,7 @@ ans = np.zeros_like(A)
 
 print(ans)
 
-cuda_dbl(drv.Out(ans), drv.In(A), drv.In(n), block = (4,4,1), grid = (1,1,1))
+cuda_dbl(drv.Out(ans), drv.In(A), drv.In(n), block = (16,36,1), grid = (40,10,1))
 
 
 print("####################################")

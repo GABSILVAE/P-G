@@ -13,7 +13,7 @@ a = numpy.ones((filas,columnas))
 
 a = a.astype(numpy.float32)
 
-b = 2 * numpy.ones((filas,columnas))
+b = numpy.ones((filas,columnas))
 
 print(n)
 
@@ -44,7 +44,7 @@ mod = SourceModule("""
         float sum=0;
         for(int j=0; j<1000 ;j++){
 
-             sum += a[idy * 1000 +j] + b[j* 1000 +idx];
+             sum += a[idy * 1000 +j] * b[j* 1000 +idx];
         }
 
        c[i]=sum;

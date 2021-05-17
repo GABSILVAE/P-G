@@ -7,8 +7,8 @@ import pycuda.autoinit
 kernel_code_template = """
 __global__ void MatrixMulKernel(float *a, float *b, float *c)
 {
-    int tx = threadIdx.x;
-    int ty = threadIdx.y;
+    int tx = threadIdx.x + blockDim.x * blockIdx.x;
+    int ty = threadIdx.y + blockDim.y * blockIdx.y;
 
     // Pvalue is used to store the element of the matrix
     // that is computed by the thread
@@ -33,11 +33,11 @@ __global__ void MatrixMulKernel(float *a, float *b, float *c)
 #  as a consequence this number (squared) can't exceed max_threads,
 #  see http://documen.tician.de/pycuda/util.html#pycuda.tools.DeviceData
 #  for more information on how to get this number for your device
-MATRIX_SIZE = 32
+MATRIX_SIZE = 12
 
 # create two random square matrices
-a_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
-b_cpu = np.random.randn(MATRIX_SIZE, MATRIX_SIZE).astype(np.float32)
+a_cpu = np.ones((MATRIX_SIZE, MATRIX_SIZE)).astype(np.float32)
+b_cpu = np.ones((MATRIX_SIZE, MATRIX_SIZE)).astype(np.float32)
 
 # compute reference on the CPU to verify GPU computation
 c_cpu = np.dot(a_cpu, b_cpu)
@@ -68,7 +68,9 @@ matrixmul(
     # output
     c_gpu, 
     # (only one) block of MATRIX_SIZE x MATRIX_SIZE threads
-    block = (MATRIX_SIZE, MATRIX_SIZE, 1),
+    block = (6,6, 1),
+    grid = (2,2,1),
+
     )
 
 # print the results
@@ -86,4 +88,6 @@ print (c_gpu.get())
 
 print ("-" * 80)
 print ("CPU-GPU difference:")
-print (c_cpu - c_gpu.get())
+#print (c_cpu - c_gpu.get())
+print ("-" * 80)
+print(c_gpu.shape)
