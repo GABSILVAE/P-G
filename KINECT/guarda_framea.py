@@ -4,34 +4,35 @@ import cv2
 from matplotlib import pyplot as plt
 import pandas as pd
 import numpy as np
+import time
 
-depth = get_depth()[0]
+c = "Capture"
+e1 = ".csv"
+e2 = ".jpg"
+i = 0
+n = 1
 
-output = depth.astype(np.uint8)
-print(output)
-cv2.imshow('Depth', output)
+while i < 7:
+    depth = get_depth()[0]
+    output = depth.astype(np.uint8)
 
-cv2.imwrite('Capture.jpg', output)
+    n = str(n)
+    a = c+n+e1
+    b = c+n+e2
+    
+    cv2.imshow('Depth', output)
+    
+    mat = pd.DataFrame(data=output)
+    mat.to_csv(a,sep=',',header=False,float_format='%d',index=False)
 
-img = cv2.imread('Capture.jpg')
-print('################################################################################################')
+    output = depth.astype(np.uint8)
+    cv2.imwrite(b, output)
 
- 
-
-blur = cv2.blur(img,(3,3))
-
-mat = pd.DataFrame(data=output)
-mat.to_csv('asd.csv',sep=',',header=False,float_format='%d',index=False)
-
-
-
-plt.subplot(121),plt.imshow(img),plt.title('Original')
-plt.xticks([]), plt.yticks([])
-plt.subplot(122),plt.imshow(blur),plt.title('Difuminada')
-plt.xticks([]), plt.yticks([])
-plt.show()
+    n = int(n)
+    n += 1
+    i += 1
+    print(n)
+    time.sleep(5)
 
 
 
-cv2.waitKey(0) # se espera a que se presione cualquier tecla
-cv2.destroyAllWindows() # un clean up no está de más
