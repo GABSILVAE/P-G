@@ -49,8 +49,8 @@ def gray2bin(image_gray, height,width,threshold):
 
     mod = compiler.SourceModule(kernel_code)
 
-    matrixmul = mod.get_function('gray2bin')
-    matrixmul(
+    graytobin = mod.get_function('gray2bin')
+    graytobin(
         gray_gpu,
         bin_gpu, 
         block=(6,36, 1),
