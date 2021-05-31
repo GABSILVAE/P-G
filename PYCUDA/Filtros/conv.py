@@ -94,4 +94,91 @@ def conv(image,kernel):
 
 
 
-    
+def seleccion_kernel (nombre):
+   opcion = nombre
+  
+   if opcion == "laplace":
+      kernel= np.array([[1,1,1],
+                        [1,-8,1],
+                        [1,1,1]])
+      
+
+   elif opcion == "convolucion":
+         kernel= np.array([[0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],])
+        
+         
+   elif opcion == "gauss_a":
+         kernel= np.array([[1,2,1],
+                           [2,4,2],
+                           [1,2,1]])
+        
+   
+   elif opcion == "gauss_b":
+         kernel= np.array([[1,4,6,4,1],
+                           [4,16,24,16,4],
+                           [6,24,36,24,6],
+                           [4,16,24,16,4],
+                           [1,4,6,4,1]]) 
+         
+
+   elif opcion == "gauss_c":
+         kernel= np.array([[0,0,0],
+                           [1,1,1],
+                           [0,0,0]]) 
+         
+
+   elif opcion == "gauss_d":
+         kernel= np.array([[1,0,0],
+                           [0,1,0],
+                           [0,0,1]])  
+         
+
+   
+   elif opcion == "prewitt_a":
+         kernel= np.array([[-1,-1,-1],    
+                           [0,0,0],
+                           [1,1,1]])  
+         
+         
+
+   elif opcion == "prewitt_b":
+         kernel= np.array([[-1,0,1],
+                           [-1,0,1],
+                           [-1,0,1]])  
+        
+         
+
+   elif opcion == "prewitt_c":
+      kernel= np.array([[0,1,1],
+                        [-1,0,1],
+                        [-1,-1,0]])
+      
+      
+   
+   elif opcion == "prewitt_d":
+      kernel= np.array([[1,1,1],
+                            [0,0,0],
+                            [-1,-1,-1]])
+      
+         
+         
+   elif opcion == "roberts_a":
+      kernel= np.array([[-1,0],
+                        [0,1]])
+      
+      
+         
+   elif opcion == "roberts_b":
+      kernel= np.array([[-1,0],
+                       [1,0]])  
+   
+
+
+   elif opcion == "roberts_c":
+      kernel= np.array([[-1,1],
+                        [0,0]])
+   return kernel
