@@ -31,15 +31,16 @@ __global__ void gray2bin( float *grayimage, float *binimage)
 
 }
 """
+''' DEFINITION OF THE METHOD OF CONVERTING THE GRICES SCALE IMAGE TO A BINARIZED IMAGE'''
 
 def gray2bin(image_gray, height,width,threshold):
-    gray_cpu = np.array(image_gray).astype(np.float32)
-    bin_cpu = np.zeros((height, width)).astype(np.float32)
+    image_gray_host = np.array(image_gray).astype(np.float32)
+    image_bin_host = np.zeros((height, width)).astype(np.float32)
     
-    gray_gpu = cuda.mem_alloc(gray_cpu.nbytes)
-    bin_gpu = cuda.mem_alloc(bin_cpu.nbytes)
+    image_gray_device = cuda.mem_alloc(image_gray_host.nbytes)
+    image_bin_device = cuda.mem_alloc(image_bin_host.nbytes)
 
-    cuda.memcpy_htod(gray_gpu, gray_cpu)
+    cuda.memcpy_htod(image_gray_device, image_gray_host)
 
     kernel_code = kernel_code_template % {
     'height': height, 
@@ -47,16 +48,16 @@ def gray2bin(image_gray, height,width,threshold):
     'threshold': threshold
     }
 
-    mod = compiler.SourceModule(kernel_code)
+    module = compiler.SourceModule(kernel_code)
 
-    graytobin = mod.get_function('gray2bin')
+    graytobin = module.get_function('gray2bin')
     graytobin(
-        gray_gpu,
-        bin_gpu, 
+        image_gray_device,
+        image_bin_device, 
         block=(6,36, 1),
         grid = (100,8,1)
     )
 
-    cuda.memcpy_dtoh(bin_cpu, bin_gpu)
+    cuda.memcpy_dtoh(image_bin_host, image_bin_device)
 
-    return bin_cpu
+    return image_bin_host

@@ -46,26 +46,28 @@ __global__ void convolucion(float *image, float *kernel, float *imagefiltred)
 }
 """
 
+''' 
+definition of the methods for the selection of the kernel and its respective application '''
 
 def conv(image,kernel):
 
    
 
-    image_cpu = np.array(image).astype(np.float32)
-    kernel_cpu=np.array(kernel) .astype(np.float32)
+    image_gray_host = np.array(image).astype(np.float32)
+    kernel_host=np.array(kernel) .astype(np.float32)
    
 
-    height,width =image_cpu.shape
-    kernel_rows,kernel_columns= kernel_cpu.shape
+    height,width =image_gray_host.shape
+    kernel_rows,kernel_columns= kernel_host.shape
 
-    image_filtered_cpu = np.zeros((height, width)).astype(np.float32)
+    image_filtered_host = np.zeros((height, width)).astype(np.float32)
 
-    image_gpu = cuda.mem_alloc(image_cpu.nbytes)
-    kernel_gpu =cuda.mem_alloc(kernel_cpu.nbytes)
-    image_filtered_gpu = cuda.mem_alloc(image_filtered_cpu.nbytes)
+    image_device = cuda.mem_alloc(image_gray_host.nbytes)
+    kernel_device =cuda.mem_alloc(kernel_host.nbytes)
+    image_filtered_device = cuda.mem_alloc(image_filtered_host.nbytes)
 
-    cuda.memcpy_htod(image_gpu, image_cpu)
-    cuda.memcpy_htod(kernel_gpu, kernel_cpu)
+    cuda.memcpy_htod(image_device, image_gray_host)
+    cuda.memcpy_htod(kernel_device, kernel_host)
 
     kernel_code = kernel_code_template % {
     'height': height, 
@@ -74,24 +76,112 @@ def conv(image,kernel):
     'kernel_columns':kernel_columns
     }
 
-    mod = compiler.SourceModule(kernel_code)
-    conv = mod.get_function('convolucion')
+    module = compiler.SourceModule(kernel_code)
+    conv = module.get_function('convolucion')
 
-    conv = mod.get_function('convolucion')
+    conv = module.get_function('convolucion')
     conv(
-        image_gpu,
-        kernel_gpu,
-        image_filtered_gpu, 
+        image_device,
+        kernel_device,
+        image_filtered_device, 
         block=(6,36, 1),
         grid = (100,8,1)
     )
     
 
 
-    cuda.memcpy_dtoh(image_filtered_cpu, image_filtered_gpu)
+    cuda.memcpy_dtoh(image_filtered_host, image_filtered_device)
 
-    return image_filtered_cpu
+    return image_filtered_host
 
 
+def seleccion_kernel (nombre):
+   option = nombre
+  
+   if option == "laplace":
+      kernel= np.array([[1,1,1],
+                        [1,-8,1],
+                        [1,1,1]])
+      
+
+   elif option == "convolucion":
+         kernel= np.array([[0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],
+                [0.04,0.04,0.04,0.04,0.04],])
+        
+         
+   elif option == "gauss_a":
+         kernel= np.array([[1,2,1],
+                           [2,4,2],
+                           [1,2,1]])
+        
+   
+   elif option == "gauss_b":
+         kernel= np.array([[1,4,6,4,1],
+                           [4,16,24,16,4],
+                           [6,24,36,24,6],
+                           [4,16,24,16,4],
+                           [1,4,6,4,1]]) 
+         
+
+   elif option == "gauss_c":
+         kernel= np.array([[0,0,0],
+                           [1,1,1],
+                           [0,0,0]]) 
+         
+
+   elif option == "gauss_d":
+         kernel= np.array([[1,0,0],
+                           [0,1,0],
+                           [0,0,1]])  
+         
+
+   
+   elif option == "prewitt_a":
+         kernel= np.array([[-1,-1,-1],    
+                           [0,0,0],
+                           [1,1,1]])  
+         
+         
+
+   elif option == "prewitt_b":
+         kernel= np.array([[-1,0,1],
+                           [-1,0,1],
+                           [-1,0,1]])  
+        
+         
+
+   elif option == "prewitt_c":
+      kernel= np.array([[0,1,1],
+                        [-1,0,1],
+                        [-1,-1,0]])
+      
+      
+   
+   elif option == "prewitt_d":
+      kernel= np.array([[1,1,1],
+                            [0,0,0],
+                            [-1,-1,-1]])
+      
+         
+         
+   elif option == "roberts_a":
+      kernel= np.array([[-1,0],
+                        [0,1]])
+      
+      
+         
+   elif option == "roberts_b":
+      kernel= np.array([[-1,0],
+                       [1,0]])  
+   
+
+
+   elif option == "roberts_c":
+      kernel= np.array([[-1,1],
+                        [0,0]])
+   return kernel
 
     

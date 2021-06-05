@@ -31,15 +31,15 @@ def rgb2gray(image, height, width, channels=3):
     Metodo para la conversion de RGB a escala de grises
     """
     # Asignacion de los tamanos de los vectores necesarios
-    a_cpu = np.array(image).astype(np.float32)
-    b_cpu = np.zeros((height, width)).astype(np.float32)
+    image_rgb_host = np.array(image).astype(np.float32)
+    image_gray_host = np.zeros((height, width)).astype(np.float32)
 
     # Asignacion de memoria requerida dentro del procesamiento
-    a_gpu = cuda.mem_alloc(a_cpu.nbytes)
-    b_gpu = cuda.mem_alloc(b_cpu.nbytes)
+    image_rgb_device = cuda.mem_alloc(image_rgb_host.nbytes)
+    image_gray_device = cuda.mem_alloc(image_gray_host.nbytes)
 
     # Copia de la informacion a de la cpu a la gpu
-    cuda.memcpy_htod(a_gpu, a_cpu)
+    cuda.memcpy_htod(image_rgb_device, image_rgb_host)
 
     # Kernel modificado con los valores necesarios
     kernel_code = kernel_code_template % {
@@ -58,12 +58,12 @@ def rgb2gray(image, height, width, channels=3):
     matrixmul = mod.get_function('rgb2gray')
     # Ejecucion del kernel
     matrixmul(
-        b_gpu,
-        a_gpu, 
+        image_gray_device,
+        image_rgb_device, 
         block=(rows_gpu, columns_gpu,1),
         grid = (50,20,1)
     )
 
     #Copia de los resultados procesados por el kernel al cpu
-    cuda.memcpy_dtoh(b_cpu, b_gpu)
-    return b_cpu
+    cuda.memcpy_dtoh(image_gray_host, image_gray_device)
+    return image_gray_host
