@@ -9,6 +9,10 @@ $ wget -qO - https://packagecloud.io/shiftkey/desktop/gpgkey | sudo tee /etc/apt
 $ sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/shiftkey/desktop/any/ any main" > /etc/apt/sources.list.d/packagecloud-shiftky-desktop.list'
 $ sudo apt-get update
 $ sudo apt install github-desktop
+---------------------------
+git reset --hard 2fe78f45964b9b432fc62d1bdf303be5b90d12e8
+
+git checkout 2fe78f45964b9b432fc62d1bdf303be5b90d12e8 GABO.txt
 -------------------------------------------------------------------------------------------------------------
 Actualizar en local con los ultimos cambios del repositorio
 Paso 1: git fetch
