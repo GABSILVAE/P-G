@@ -1,3 +1,7 @@
+sudo ubuntu-drivers autoinstall
+sudo apt install nvidia-cuda-toolkit
+
+
 ////////////////////////// PyCUDA ////////////////////////////////////////////
 
 https://medium.com/dropout-analytics/pycuda-on-jetson-nano-7990decab299
