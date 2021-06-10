@@ -19,7 +19,7 @@ def dilatation(binarized_image, filter):
     binarized_image_host = np.array(binarized_image).astype(np.uint32)
     dilated_image_host = np.zeros((height_image, width_image)).astype(np.uint32)
     filter_host = np.array(filter).astype(np.uint32)
-
+    print("1111111111111111111111111111111111")
 
     binarized_image_device = copy_host_to_device(binarized_image_host)
     dilated_image_device = copy_host_to_device(dilated_image_host)
@@ -33,7 +33,7 @@ def dilatation(binarized_image, filter):
         'width_filter': str(width_filter)
         }
     kernel = kernel_creation(path, kernel_parameters=parameters)
-
+    
     # Kernel excecution 
     module = compiler.SourceModule(kernel)
     dilatation_function = module.get_function("dilatation")

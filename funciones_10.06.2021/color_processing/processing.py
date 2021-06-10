@@ -22,7 +22,7 @@ def rgb2gray(image, width, height):
         'channels': str(3),
         'threshold': str(1)
     }
-    kernel = kernel_creation(path, kernel_parameters=parameters)
+    kernel = kernel_creation(path, kernel_parameters = parameters)
 
     # Kernel excecution
     module = compiler.SourceModule(kernel)
@@ -46,9 +46,9 @@ def gray2bin(gray_image, threshold):
     columns_device = round(height_image/100)
 
     # Creating vectors for processing
-    gray_image_host = np.array(gray_image).astype(np.uint32)
-    binarized_image_host = np.zeros((height_image, width_image)).astype(np.uint32)
-
+    gray_image_host = np.array(gray_image).astype(np.float32)
+    binarized_image_host = np.zeros((height_image, width_image)).astype(np.float32)
+    
     gray_image_device = copy_host_to_device(gray_image_host)
     binarized_image_device = copy_host_to_device(binarized_image_host)
 
@@ -68,7 +68,7 @@ def gray2bin(gray_image, threshold):
         gray_image_device,
         binarized_image_device, 
         block = (rows_device, columns_device, 1),
-        grid = (100, 100, 1)
+        grid = (100, 100, 1),
     )
 
     # Copy device variable to host device
