@@ -1,5 +1,6 @@
 https://www.youtube.com/watch?v=G8WfsHek4vk&t=19s
 https://github.com/puigalex/deteccion-objetos-video
+https://geekytheory.com/opencv-en-linux
 
 git clone https://github.com/puigalex/deteccion-objetos-video.git
 cd deteccion-objetos-video
