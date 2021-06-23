@@ -1,6 +1,8 @@
 GABSILVAE
 Ab201310989
 
+pip freeze > requeriments.txt
+
 -------------------------------------------------------------------------------------------------------------
 instalar github ubuntu
 https://github.com/shiftkey/desktop
