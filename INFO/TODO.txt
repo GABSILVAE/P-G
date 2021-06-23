@@ -1,0 +1,35 @@
+sudo apt update
+sudo apt install git
+git clone https://github.com/jeremyb31/rtl8192eu-linux-driver
+cd rtl8192eu-linux-driver
+export ARCH=arm64
+make
+sudo make install
+
+echo "blacklist rtl8xxxu" | sudo tee /etc/modprobe.d/rtl8xxxu.conf;
+echo -e "8192eu\n\nloop" | sudo tee /etc/modules;
+sudo update-grub; sudo update-initramfs -u;
+systemctl reboot -i;
+
+
+
+sudo gedit ~/.bashrc
+
+export PATH=${PATH}:/usr/local/cuda/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
+
+source ~/.bashrc
+nvcc --version
+
+
+sudo apt install python3-pip
+pip --version
+pip3 --version
+
+git clone https://github.com/puigalex/deteccion-objetos-video.git
+cd deteccion-objetos-video
+pip install -r requirements.txt
+bash weights/download_weights.sh
+mv yolov3.weights weights/
+
+python deteccion_video.py

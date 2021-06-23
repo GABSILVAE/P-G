@@ -1,0 +1,10 @@
+https://www.youtube.com/watch?v=G8WfsHek4vk&t=19s
+https://github.com/puigalex/deteccion-objetos-video
+
+git clone https://github.com/puigalex/deteccion-objetos-video.git
+cd deteccion-objetos-video
+pip install -r requirements.txt
+bash weights/download_weights.sh
+mv yolov3.weights weights/
+
+python deteccion_video.py
