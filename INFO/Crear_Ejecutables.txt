@@ -1,3 +1,12 @@
+https://blog.desdelinux.net/bash-como-hacer-un-script-ejecutable/?_gl=1%2Akgcwdl%2A_ga%2AYW1wLVdwandMMDRkUGUyZncxNHVsUDhZVFVjZHhlcmdHYjJ2MGJkc09RM2I5S3dmZFUtTHN1UEhzWjBTTEVYbS1aQ00.
+
+cd $HOME && touch script.sh && chmod +x script.sh
+cd $HOME && echo '#!/bin/bash' > script.sh && echo '# -*- ENCODING: UTF-8 -*-' >> script.sh
+
+---------------------------------------------------------------------------------------------------------------------
+
+https://computerhoy.com/paso-a-paso/apps/automatiza-tareas-linux-ahorra-tiempo-bash-30751
+
 #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
 echo "<° Linux es lo mejor"
@@ -5,4 +14,3 @@ exit
 
 guardando el archivo "name.sh"
 
-https://computerhoy.com/paso-a-paso/apps/automatiza-tareas-linux-ahorra-tiempo-bash-30751

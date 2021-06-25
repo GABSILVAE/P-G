@@ -1,8 +1,12 @@
 #!/bin/bash
+# -*- ENCODING: UTF-8 -*-
 
 sudo apt update
+sudo nvpmodel -q --verbose
+sudo nvpmodel -m 0
 sudo apt install git
 git clone https://github.com/jeremyb31/rtl8192eu-linux-driver
+git clone https://github.com/GABSILVAE/P-G.git
 cd rtl8192eu-linux-driver
 export ARCH=arm64
 make
