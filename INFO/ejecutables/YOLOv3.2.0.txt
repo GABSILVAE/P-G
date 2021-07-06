@@ -1,0 +1,21 @@
+#https://pysource.com/2019/08/29/yolo-v3-install-and-run-yolo-on-nvidia-jetson-nano-with-gpu/
+
+sudo apt-get update
+export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+git clone https://github.com/AlexeyAB/darknet
+cd darknet
+wget https://pjreddie.com/media/files/yolov3.weights
+wget https://pjreddie.com/media/files/yolov3-tiny.weights
+sudo vi Makefile
+
+#Set the values:
+#GPU=1
+#CUDNN=1
+#OPENCV=1
+#and the rest leave it as it is.
+
+make
+
+./darknet detector demo cfg/coco.data cfg/yolov3.cfg yolov3.weights -c 0
+./darknet detector demo cfg/coco.data cfg/yolov3-tiny.cfg yolov3-tiny.weights -c 0
