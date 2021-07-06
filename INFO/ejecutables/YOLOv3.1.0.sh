@@ -15,9 +15,22 @@ sudo apt-get install libjpeg-dev libtiff5-dev libopenexr-dev libtbb-dev yasm lib
 bash weights/download_weights.sh
 mv yolov3.weights weights/
 
-sudo -H pip3 install torch
+#sudo -H pip3 install torch
+sudo apt-get install python3-pip libopenblas-dev libopenmpi-dev libomp-dev
+sudo -H pip3 install future
+sudo -H pip3 install --upgrade setuptools
+sudo -H pip3 install Cython
+sudo -H pip3 install gdown
+sudo cp ~/.local/bin/gdown /usr/local/bin/gdown
+gdown https://drive.google.com/uc?id=12UiREE6-o3BthhpjQxCKLtRg3u4ssPqb
+sudo -H pip3 install torch-1.9.0a0+gitd69c22d-cp36-cp36m-linux_aarch64.whl
+rm torch-1.9.0a0+gitd69c22d-cp36-cp36m-linux_aarch64.whl
+
 sudo -H pip3 install torchvision
 sudo -H pip3 install tqdm
 
-https://qengineering.eu/install-pytorch-on-jetson-nano.html
-python3 deteccion_video.py
+sudo reboot
+
+#https://qengineering.eu/install-pytorch-on-jetson-nano.html
+#torch.cuda.is_available()
+#python3 deteccion_video.py
