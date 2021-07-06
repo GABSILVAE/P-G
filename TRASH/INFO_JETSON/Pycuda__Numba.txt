@@ -1,0 +1,76 @@
+sudo ubuntu-drivers autoinstall
+sudo apt install nvidia-cuda-toolkit
+
+
+////////////////////////// PyCUDA ////////////////////////////////////////////
+
+https://medium.com/dropout-analytics/pycuda-on-jetson-nano-7990decab299
+
+$ sudo apt-get install cmake
+$ sudo apt-get install python-pip
+$ sudo pip3 install wget
+$ sudo pip3 install Cython
+
+$ sudo apt-get install libboost-all-dev
+$ sudo apt-get install python3-numpy
+$ sudo apt-get install build-essential python-dev python-setuptools libboost-python-dev libboost-thread-dev
+
+
+Step 1 — Set nvcc Path
+	Nvcc comes preinstalled, but your Nano isn’t exactly told about it.. Use sudo to open your bashrc file;
+
+		sudo gedit ~/.bashrc
+
+	Add a blank, then these 2 lines (letting your Nano know where CUDA is) to the bottom of the file;
+
+		export PATH=${PATH}:/usr/local/cuda/bin
+		export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
+
+	Save, close, then (back in Terminal) source the bashrc file
+
+		source ~/.bashrc
+
+You can now check your nvcc version with;
+		
+		nvcc --version
+		
+
+Step 2 — Install PyCUDA
+	Install PyCUDA with PIP;
+
+		pip install pycuda or pip3 install pycuda
+
+	If you don’t have pip, get pip.
+
+
+///////////////////////////////////// Numba ///////////////////////////////////
+https://github.com/jefflgaol/Install-Packages-Jetson-ARM-Family
+https://www.codenong.com/cs106926198/
+
+$ sudo apt-get install -y nano curl
+$ sudo apt-get install -y python3-pip python3-dev
+$ sudo apt-get install -y python-pip
+$ sudo apt-get install -y python-setuptools
+$ sudo apt-get install -y python3-setuptools
+$ sudo apt-get install -y python3-opencv
+$ sudo apt-get install -y libcanberra-gtk0 libcanberra-gtk-module
+
+$ pip3 install -U pip
+$ pip install -U pip
+$ pip3 install setuptools wheel
+$ pip install setuptools wheel cython
+
+$ bash <(https://github.com/yqlbu/jetson-packages-family/raw/master/set_cuda.sh)
+
+$ cd ~
+$ wget https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
+$ sudo sh Archiconda3-0.2.3-Linux-aarch64.sh
+$ rm -rf Archiconda3-0.2.3-Linux-aarch64.sh
+$ cd ~
+$ sudo chown -R $USER archiconda3/
+$ export 'PATH=~/archiconda3/bin:$PATH' >> ~/.bashrc
+$ conda config --add channels conda-forge
+$ conda -V
+$ export "PATH=/bin:/usr/bin:$PATH" >> ~/.bashrc
+
+$ pip3 install numba==0.31 --user
