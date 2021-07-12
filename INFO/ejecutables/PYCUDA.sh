@@ -1,9 +1,9 @@
 #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
-#gedit ~/.bashrc
+#sudo gedit ~/.bashrc
 #export PATH=${PATH}:/usr/local/cuda/bin
 #export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
-#~/.bashrc
+#source ~/.bashrc
 
 sudo apt-get install cmake
 sudo apt-get install python3-pip
