@@ -15,8 +15,8 @@ while upper < max_upper:
     dist = pol_ncl_5((lower + upper) / 2)
     print('%d < depth = %d cm < %d' % (lower, dist, upper))
     img = disp_thresh(lower, upper)
-    print(objs(img))
+    objs(img)
     #green()
-    time.sleep(1)
+    time.sleep(2)
     lower += 5
     upper += 5

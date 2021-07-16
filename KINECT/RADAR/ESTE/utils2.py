@@ -1,9 +1,11 @@
 import cv2
 import freenect
 import numpy as np
+import collections
 
 from morphology.processing import dilatation, erosion
 from frame_convert2 import video_cv
+from image import array2vector_gray
 
 
 def green():
@@ -67,67 +69,38 @@ def objs(img):
     filas, columnas = img.shape
     matriz = 1 * img.astype(np.bool)
 
-    numeroIslas=2
+    islas=2
+    filas, columnas = matriz.shape
+    adv = False
 
-    for i in range(filas-1):
-        for j in range(columnas-1):
-            valorPos=matriz[i][j]
-            dirN=i+1
-            dirS=i-1
-            dirD=j+1
-            dirI=j-1
-            if(dirN<0 or dirN>9):
-                posN=0
-            else:
-                posN=matriz[dirN][j]
-            
-            if(dirS<0 or dirS>10):
-                posS=0
-            else:
-                posS=matriz[dirS][j]
-            
-            if(dirD<0 or dirD>9):
-                posD=0
-            else:
-                posD=matriz[i][dirD]
-            
-            if(dirI<0 or dirI>10):
-                posI=0
-            else:
-                posI=matriz[i][dirI]
-            
-            if (valorPos==1):
-                if(posD==1 or posD==0):
-                    matriz[i][j]=numeroIslas
-                    if(posN==1):
-                        matriz[i+1][j]=numeroIslas
-                    if(posS==1):
-                        matriz[i-1][j]=numeroIslas
-                    if(posD==1):
-                        matriz[i][j+1]=numeroIslas
-                    if(posI==1):
-                        matriz[i][j-1]=numeroIslas
-                    numeroIslas=numeroIslas+1
-                if(posD>1):
-                    matriz[i][j]=posD
-                    if(posN==1):
-                        matriz[i+1][j]=posD
-                    if(posS==1):
-                        matriz[i-1][j]=posD
-                    if(posD==1):
-                        matriz[i][j+1]=posD
-                    if(posI==1):
-                        matriz[i][j-1]=posD
+    for i in range(filas - 2):
+        for j in range(columnas - 2):
 
-            if(valorPos!=0 and valorPos!=1):
-                if(posN==1):
-                    matriz[i+1][j]=valorPos
-                if(posS==1):
-                    matriz[i-1][j]=valorPos
-                if(posD==1):
-                    matriz[i][j+1]=valorPos
-                if(posI==1):
-                    matriz[i][j-1]=valorPos
-    numeroIslas=numeroIslas-2
-    print("numero de islas = %s" %numeroIslas)
-    return numeroIslas
+            if(i == 0 and j == 0 and matriz[i+1,j+1] == 1):
+                matriz[i+1,j+1] = islas
+            
+            if(matriz[i+1,j+1] == 1):
+                adv = False
+                for m in range(3):
+                    for n in range(3):
+                        if(matriz[i+m,j+n] != 1 and matriz[i+m,j+n] != 0):
+                            adv = True
+                if(adv):
+                    matriz[i+1,j+1] = islas
+                    adv = False
+                else:
+                    islas += 1
+                    matriz[i+1,j+1] = islas
+
+            if(matriz[i+1,j+1] != 1 and matriz[i+1,j+1] != 0):
+                for k in range(3):
+                    for l in range(3):
+                        if(matriz[i+k,j+l] == 1):
+                            matriz[i+k,j+l] = matriz[i+1,j+1]
+    
+    cantidad = array2vector_gray(matriz)
+    cantidad = collections.Counter(cantidad)
+    print(cantidad)
+    
+    islas -= 1
+    print('islas = %d' % (islas))
